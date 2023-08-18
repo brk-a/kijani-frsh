@@ -1,15 +1,21 @@
 "use client"
+import categoryData from "@/dump/categoryData"
+import Link from "next/link"
 
 const Categories = () => {
-    const handleChange = () => {}
+    const handleChange = () => {} //filter function
   return (
     <>
-    <div className='flex flex-col gap-4 items-center justify-between p-2'>
-        <div className='flex flex-row gap-2'>
-            <input type='checkbox' onChange={handleChange}/>
-            <p>Veggies</p> {/**veggies, herbs, leafey veg, root veg, peppers, onions, tomatoes etc */}
+    {categoryData.map((obj, i) => ( 
+      <div key={i} className='flex flex-col gap-4 items-start justify-center p-2'>
+        <div className='flex flex-row gap-2 items-center justify-center'>
+          <input type='checkbox' onChange={handleChange}/>
+          <Link href={obj.link}>
+            <p className='text-sm'>{obj.display_name}</p>
+          </Link>
         </div>
-    </div>
+      </div>
+    ))}
     </>
   )
 }

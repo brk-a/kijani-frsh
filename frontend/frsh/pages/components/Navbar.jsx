@@ -1,11 +1,15 @@
 import Image from 'next/image'
 import React from 'react'
+import Search from './Search'
 
 const Navbar = () => {
   return (
     <>
     <div className='relative flex flex-row justify-between bg-[#212529] text-white py-6 px-12'>
       <h2 className='text-white text-3xl'>FRSH</h2>
+      <div className='flex flex-row items-center justify-center p-1 rounded-full'>
+        <Search/>
+      </div>
       <div className='bg-white rounded-md'>
         <Image src='/assets/cart3.svg'
           width={42}

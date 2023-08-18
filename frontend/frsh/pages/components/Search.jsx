@@ -9,9 +9,11 @@ const Search = () => {
     }
   return (
     <>
-    <div className='flex flex-row items-center justify-between gap-3 border border-slate-800/75 p-1 rounded-full'>
-        <SlMagnifier/>
-        <input placeholder='Search FRSH' onChange={handleChange}/>
+    <div className='flex flex-row items-center justify-between gap-3 bg-white border border-slate-800/75 p-1 rounded-full'>
+        <div className='p-2 text-slate-800'>
+            <SlMagnifier />
+        </div>
+        <input placeholder='Search FRSH' onChange={handleChange} className='fill-none rounded-full p-2'/>
     </div>
     {/* <div>
         {
