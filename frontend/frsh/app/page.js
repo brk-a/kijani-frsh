@@ -7,16 +7,17 @@ import {RxDividerVertical} from "react-icons/rx"
 export default function Home() {
   return (
     
-      <div>
+      <div className='bg-white w-full'>
         {/* <Image src='/assets/cover.jpeg'/> */}
         <Navbar/>
         <div className='flex flex-row'>
-          <div className='basis-1/5'>
+          <div className='min-[320px]:hidden lg:flex lg:basis-1/5'>
             <Sidebar/>
+            <RxDividerVertical className='h-full w-[0.75px]'/>
           </div>
-          <RxDividerVertical className='h-full w-[0.75px]'/>
-          <div className='basis-4/5'>
-            <Catalogue/>
+          {/* <RxDividerVertical className='h-full w-[0.75px]'/> */}
+          <div className='min-[320px]:basis-full lg:basis-4/5'>
+            <Catalogue />
           </div>
         </div>
       </div>
