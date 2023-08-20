@@ -1,12 +1,17 @@
 import Image from 'next/image'
 import React from 'react'
 import Search from './Search'
+import { RxHamburgerMenu } from 'react-icons/rx'
 
 const Navbar = () => {
+  const hamburgerMenu = () => {}
   return (
     <>
-    <div className='relative flex flex-row justify-between bg-[#212529] text-white py-6 px-12'>
-      <h2 className='text-white text-3xl'>FRSH</h2>
+    <div className='relative flex flex-row justify-between bg-[#212529] py-6 px-12'>
+      <div>
+        <h2 className='text-white text-3xl'>FRSH</h2>
+        <RxHamburgerMenu className='lg:hidden w-[24px] h-[24px]' onClick={hamburgerMenu}/>
+      </div>
       <div className='min-[320px]:hidden lg:flex flex-row items-center justify-center p-1 rounded-full'>
         <Search/>
       </div>
