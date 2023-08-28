@@ -1,3 +1,4 @@
+"use client"
 import Image from 'next/image'
 import React from 'react'
 import Search from './Search'
@@ -8,9 +9,9 @@ const Navbar = () => {
   return (
     <>
     <div className='relative flex flex-row justify-between bg-[#212529] py-6 px-12'>
-      <div>
-        <h2 className='text-white text-3xl'>FRSH</h2>
-        <RxHamburgerMenu className='lg:hidden w-[24px] h-[24px]' onClick={hamburgerMenu}/>
+      <div className='flex flex-row gap-4 justify-center items-center space-between'>
+        <RxHamburgerMenu className='lg:hidden w-[32px] h-[32px]' onClick={hamburgerMenu}/>
+        <h2 className='text-white text-3xl sm:hidden lg:flex'>FRSH</h2>
       </div>
       <div className='min-[320px]:hidden lg:flex flex-row items-center justify-center p-1 rounded-full'>
         <Search/>

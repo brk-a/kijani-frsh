@@ -23,6 +23,18 @@ const trendingData = [
         link: '/categories/cabbage',
         tags: [],
     },
+    {
+        trend_name: 'creamed spinach',
+        display_name: 'creamed spinach',
+        link: '/categories/spinach',
+        tags: [],
+    },
+    {
+        trend_name: 'mushroom',
+        display_name: 'mushroom',
+        link: '/categories/mushroom',
+        tags: [],
+    },
 ]
 
 export default trendingData
