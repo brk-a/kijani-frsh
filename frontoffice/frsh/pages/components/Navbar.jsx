@@ -8,7 +8,7 @@ const Navbar = () => {
   const hamburgerMenu = () => {}
   return (
     <>
-    <div className='relative flex flex-row justify-between bg-[#212529] py-6 px-12'>
+    <div className='sticky top-0 left-0 right-0 flex flex-row justify-between bg-[#212529] py-6 px-12'>
       <div className='flex flex-row gap-4 justify-center items-center space-between'>
         <RxHamburgerMenu className='lg:hidden w-[32px] h-[32px]' onClick={hamburgerMenu}/>
         <h2 className='text-white text-3xl sm:hidden lg:flex'>FRSH</h2>

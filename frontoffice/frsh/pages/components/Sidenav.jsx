@@ -5,7 +5,7 @@ import Trending from './Trending'
 
 const Sidenav = () => {
   return (
-    <div className='flex flex-col gap-8 h-full bg-white items-start justify-start px-5 py-5'>
+    <div className='fixed flex flex-col gap-8 h-full bg-white items-start justify-start px-5 py-5'>
       <div className='text-[#212529] mx-2 mb-5'>
         <Search/>
       </div>
