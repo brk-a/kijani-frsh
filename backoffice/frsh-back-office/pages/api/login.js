@@ -25,6 +25,7 @@ const login = async (req, res) => {
                 router.push("/register")
                 return res.status(400).json({ message: errorMessage })
             }
+            //TO DO: log user in
             return res.status(200).json({ message: 'User logged in successfully' })
         
     } catch (error) {

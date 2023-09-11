@@ -1,6 +1,5 @@
 import productData from '@/dump/productData'
 import ProductCard from '@/pages/components/ProductCard'
-import React from 'react'
 
 const Catalogue = () => {
   return (
@@ -12,7 +11,7 @@ const Catalogue = () => {
                     title={product.title}
                     description={product.description}
                     price={product.price}
-                    // id={id}
+                    id={product.id}
                 />
             </div>
         ))}
