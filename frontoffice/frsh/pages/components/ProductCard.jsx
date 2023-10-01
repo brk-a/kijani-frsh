@@ -10,19 +10,19 @@ const ProductCard = ({ id, image, title, description, price }) => {
   const [quantityToCart, setQuantityToCart] = useState(0)
 
   const increment = (e) => {
-    e.preventDefault()
-    setQuantityToCart(quantityToCart + 1)
+    // e.preventDefault()
+    setQuantityToCart(1)
     // console.log("id: ", e.target.id);
-    // console.log("value: ", e.target.value);
+    // console.log("value: ", e.target);
   
-    let search = cart.find((obj) => { obj.id === e.target.id })
+    let search = cart.find((obj) => obj.id === e.target.id )
+    console.log("cart 0:", cart)
     if (search !== undefined) {
-      search.quantityToCart += 1
-      setCart(prev => prev.filter(obj => obj.id !== e.target.id).push(search))
       // update()
+      setCart(prev => [...prev, {productID: search.id, quantity: quantityToCart+1}])
       console.log("cart 1:", cart)
     }
-    setCart(prev => [...prev, productData.find((obj) => { obj.id === e.target.id })])
+    setCart(prev => [...prev, {productID: e.target.id, quantity: quantityToCart}])
     console.log("cart 2:", cart)
   }
   const decrement = (e) => {

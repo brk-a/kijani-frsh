@@ -7,7 +7,7 @@ const Login = () => {
   /**states */
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
- 
+
 
   /**hooks */
   const handleSubmit = async (e) => {
@@ -18,7 +18,7 @@ const Login = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({username, password}),
+        body: JSON.stringify({ username, password }),
       })
 
       const data = await response.json()
@@ -37,47 +37,56 @@ const Login = () => {
 
   /**return */
   return (
-    <div className='flex flex-col items-center justify-center m-4 p-4'>
-      <div className='flex flex-row items-center justify-center w-full h-[70px] m-4 p-4'>
+    <div className='flex flex-col items-center justify-center  m-auto p-4'>
+      <div className='flex flex-row items-center justify-center w-full h-[70px] m-auto p-4'>
         <h2>Log In</h2>
       </div>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} >
+        <Row>
+          <Col md={4}>
             <FormGroup>
               <Label for='username'>Username or Employee ID</Label>
-              <Input bsSize='lg'
-                  // invalid
-                  // valid
-                  type='text'
-                  id='username'
-                  value={username} 
-                  placeholder='Username or ID'
-                  onChange={(e) => setUsername(e.target.value)}
-                />
+              <Input bsSize='sm'
+                // invalid
+                // valid
+                type='text'
+                id='username'
+                value={username}
+                placeholder='Username or ID'
+                onChange={(e) => setUsername(e.target.value)}
+              />
               {/* <FormFeedback valid tooltip>Name is available</FormFeedback> */}
               <FormFeedback invalid tooltip>Invalid username</FormFeedback>
               {/* <FormText>name</FormText> */}
             </FormGroup>
+
             <FormGroup>
-            <Label for='password'>Password</Label>
-            <Input bsSize='lg'
-                  // invalid
-                  tooltip
-                  type='password'
-                  id='password'
-                  value={password}
-                  placeholder='Password'
-                  onChange={(e) => setPassword(e.target.value)}
-                />
+              <Label for='password'>Password</Label>
+              <Input bsSize='sm'
+                // invalid
+                tooltip
+                type='password'
+                id='password'
+                value={password}
+                placeholder='Password'
+                onChange={(e) => setPassword(e.target.value)}
+              />
               {/* <FormFeedback valid tooltip></FormFeedback> */}
               <FormFeedback invalid tooltip>Invalid password</FormFeedback>
               {/* <FormText></FormText> */}
             </FormGroup>
-            <Button type="submit" bsSize='lg' color='primary' block>
-              Log In
-            </Button>
+          </Col>
+          <Row className='my-4'>
+            <Col md={2}>
+              <Button type="submit" bsSize='lg' color='primary' block>
+                Log In
+              </Button>
+            </Col>
+          </Row>
+        </Row>
       </Form>
       <div className='h-[70px] m-4 p-4'>
-        <span>Not registered?</span>&nbsp;
+        <span>Not registered?</span>&emsp;
         <span>
           <Link href="/register">Register</Link>
         </span>
