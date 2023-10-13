@@ -1,10 +1,8 @@
 
-const Cart = ({ open, onClose }) => {
-
-
+const Cart = () => {
   return (
     <div>
-      
+      CART
     </div>
   );
 }

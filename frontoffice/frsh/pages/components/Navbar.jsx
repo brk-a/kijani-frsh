@@ -2,9 +2,15 @@
 import Image from 'next/image'
 import Search from './Search'
 import { RxHamburgerMenu } from 'react-icons/rx'
+import { useRouter } from 'next/navigation'
 
 const Navbar = () => {
+  const router = useRouter()
+
   const hamburgerMenu = () => {}
+  const openCart = () => {
+    router.push("cart")
+  }
 
   return (
     <>
@@ -16,7 +22,7 @@ const Navbar = () => {
       <div className='min-[320px]:hidden lg:flex flex-row items-center justify-center p-1 rounded-full'>
         <Search/>
       </div>
-      <div className='bg-white rounded-md cursor-pointer'>
+      <div className='bg-white rounded-md cursor-pointer' onClick={openCart}>
         <Image src='/assets/cart3.svg'
           width={42}
           height={42}

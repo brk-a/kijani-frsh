@@ -14,6 +14,9 @@ const ProductCard = ({ id, image, title, description, price }) => {
     // e.preventDefault()
     setQuantityToCart(quantityToCart + 1)
     const search = cart.find(obj => obj.id === e.target.id)
+
+    if(search===undefined) return
+
     if (search !== undefined) { //exists in cart
       console.info(`search: ${search}`, search)
       update(search.id)
@@ -27,9 +30,13 @@ const ProductCard = ({ id, image, title, description, price }) => {
     // e.preventDefault()
     quantityToCart < 0 ? 0 : setQuantityToCart(quantityToCart - 1)
     const search = cart.find(obj => obj.id === e.target.id)
+
+    if(search===undefined) return
+
     if (search !== undefined) { //exists in cart
       console.info(`search: ${search}`, search)
       update(search.id)
+      cart.filter(obj => obj.quantity !== 0)
     }
 
     console.info(`cart, decr: ${cart}`, cart)
