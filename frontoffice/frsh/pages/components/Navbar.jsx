@@ -1,11 +1,11 @@
 "use client"
 import Image from 'next/image'
-import React from 'react'
 import Search from './Search'
 import { RxHamburgerMenu } from 'react-icons/rx'
 
 const Navbar = () => {
   const hamburgerMenu = () => {}
+
   return (
     <>
     <div className='sticky top-0 left-0 right-0 flex flex-row justify-between bg-[#212529] py-6 px-12'>
@@ -16,7 +16,7 @@ const Navbar = () => {
       <div className='min-[320px]:hidden lg:flex flex-row items-center justify-center p-1 rounded-full'>
         <Search/>
       </div>
-      <div className='bg-white rounded-md'>
+      <div className='bg-white rounded-md cursor-pointer'>
         <Image src='/assets/cart3.svg'
           width={42}
           height={42}

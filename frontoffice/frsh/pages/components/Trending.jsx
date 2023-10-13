@@ -13,7 +13,7 @@ const Trending = () => {
       {trendingData.map((obj, i) => ( 
         <div key={i} className='flex flex-col gap-1 items-start justify-center p-1 ml-1'>
           <Link href={obj.link}>
-              <p className='text-sm'>{obj.display_name}</p>
+              <p className='text-sm no-underline'>{obj.display_name}</p>
           </Link>
         </div>
       ))}

@@ -2,42 +2,54 @@
 
 import { NumberFormat } from 'jsx-number-format'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import productData from '@/dump/productData'
 
 const ProductCard = ({ id, image, title, description, price }) => {
   const [cart, setCart] = useState([])
   const [quantityToCart, setQuantityToCart] = useState(0)
+  const [calculation, setCalculation] = useState(0)
 
   const increment = (e) => {
     // e.preventDefault()
-    setQuantityToCart(1)
-    // console.log("id: ", e.target.id);
-    // console.log("value: ", e.target);
-  
-    let search = cart.find((obj) => obj.id === e.target.id )
-    console.log("cart 0:", cart)
-    if (search !== undefined) {
-      // update()
-      setCart(prev => [...prev, {productID: search.id, quantity: quantityToCart+1}])
-      console.log("cart 1:", cart)
+    setQuantityToCart(quantityToCart + 1)
+    const search = cart.find(obj => obj.id === e.target.id)
+    if (search !== undefined) { //exists in cart
+      console.info(`search: ${search}`, search)
+      update(search.id)
+    } else {
+      setCart(prev => [...prev, {id: e.target.id, quantity: quantityToCart}])
     }
-    setCart(prev => [...prev, {productID: e.target.id, quantity: quantityToCart}])
-    console.log("cart 2:", cart)
+
+    console.info(`cart, incr: ${cart}`, cart)
   }
   const decrement = (e) => {
-    e.preventDefault()
+    // e.preventDefault()
     quantityToCart < 0 ? 0 : setQuantityToCart(quantityToCart - 1)
+    const search = cart.find(obj => obj.id === e.target.id)
+    if (search !== undefined) { //exists in cart
+      console.info(`search: ${search}`, search)
+      update(search.id)
+    }
+
+    console.info(`cart, decr: ${cart}`, cart)
   }
-  // const update = (id) => {
-  //   for (i of cart) {
-  //     if (id in i.id) {
-  //       i.quantityToCart = quantityToCart
-  //       setCart(prev => ([...prev, i]))
-  //     }
-  //   }
-  //   setCart(prev => ([...prev, {}]))
-  // }
+  const update = (id) => {
+    for (let i of cart) {
+      if (id===i.id) {
+        i.quantity = quantityToCart
+        setCart(prev => ([...prev, i]))
+      }
+    }
+  }
+  
+  useMemo(() => {
+    const calc = cart.reduce((accumulator, item) => (
+      accumulator + item.quantity
+    ), 0)
+    console.info(`calc: ${calc}`)
+    return setCalculation(calc)
+  }, [cart])
 
   return (
     <>
@@ -51,12 +63,12 @@ const ProductCard = ({ id, image, title, description, price }) => {
         </p>
         <div className='flex flex-row justify-between items-center'>
           <div className='flex flex-row gap-2'>
-          <h2 className='text-md'>
-            KES {NumberFormat(price, 2, ",")}
-          </h2>
-          <p className='text-black/75 text-xs'>
-            per kg
-          </p>
+            <h2 className='text-md'>
+              KES {NumberFormat(price, 2, ",")}
+            </h2>
+            <p className='text-black/75 text-xs'>
+              per kg
+            </p>
           </div>
           <div className='flex flex-row items-center p-1 gap-1'>
             <Image src='assets/dash-lg.svg'
@@ -76,7 +88,7 @@ const ProductCard = ({ id, image, title, description, price }) => {
               className='stroke-2 stroke-green-400 hover:stroke-green-700 fill-green-400 hover:fill-green-700'
               onClick={increment}
               id={id}
-              // value={item}
+            // value={item}
             />
           </div>
         </div>
