@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Search from './Search'
 import { RxHamburgerMenu } from 'react-icons/rx'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 const Navbar = () => {
   const router = useRouter()
@@ -17,7 +18,9 @@ const Navbar = () => {
     <div className='sticky top-0 left-0 right-0 flex flex-row justify-between bg-[#212529] py-6 px-12'>
       <div className='flex flex-row gap-4 justify-center items-center space-between'>
         <RxHamburgerMenu className='lg:hidden w-[32px] h-[32px]' onClick={hamburgerMenu}/>
-        <h2 className='text-white text-3xl sm:hidden lg:flex'>FRSH</h2>
+        <h2 className='text-white text-3xl sm:hidden lg:flex'>
+          <Link href="/">FRSH</Link>
+          </h2>
       </div>
       <div className='min-[320px]:hidden lg:flex flex-row items-center justify-center p-1 rounded-full'>
         <Search/>

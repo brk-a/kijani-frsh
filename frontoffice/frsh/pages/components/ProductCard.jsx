@@ -58,7 +58,7 @@ const ProductCard = ({ id, image, title, description, price }) => {
       accumulator + item.quantity
     ), 0)
     console.info(`calc: ${calc}`)
-    localStorage.setItem("calculation", Json.stringify(calculation))
+    localStorage.setItem("calculation", JSON.stringify(calculation))
     return setCalculation(calc)
   }, [cart])
 
