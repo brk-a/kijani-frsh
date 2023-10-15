@@ -6,7 +6,7 @@ import { useState, useMemo } from 'react'
 import productData from '@/dump/productData'
 
 const ProductCard = ({ id, image, title, description, price }) => {
-  const [cart, setCart] = useState([])
+  const [cart, setCart] = useState(localStorage.getItem("data") || [])
   const [quantityToCart, setQuantityToCart] = useState(0)
   const [calculation, setCalculation] = useState(0)
 
@@ -15,14 +15,16 @@ const ProductCard = ({ id, image, title, description, price }) => {
     setQuantityToCart(quantityToCart + 1)
     const search = cart.find(obj => obj.id === e.target.id)
 
-    if(search===undefined) return
+    if (search === undefined) return
 
     if (search !== undefined) { //exists in cart
       console.info(`search: ${search}`, search)
       update(search.id)
     } else {
-      setCart(prev => [...prev, {id: e.target.id, quantity: quantityToCart}])
+      setCart(prev => [...prev, { id: e.target.id, quantity: quantityToCart }])
     }
+
+    localStorage.setItem("data", JSON.stringify(cart))
 
     console.info(`cart, incr: ${cart}`, cart)
   }
@@ -31,36 +33,38 @@ const ProductCard = ({ id, image, title, description, price }) => {
     quantityToCart < 0 ? 0 : setQuantityToCart(quantityToCart - 1)
     const search = cart.find(obj => obj.id === e.target.id)
 
-    if(search===undefined) return
+    if (search === undefined) return
 
     if (search !== undefined) { //exists in cart
       console.info(`search: ${search}`, search)
       update(search.id)
       cart.filter(obj => obj.quantity !== 0)
+      localStorage.setItem("data", JSON.stringify(cart))
     }
 
     console.info(`cart, decr: ${cart}`, cart)
   }
   const update = (id) => {
     for (let i of cart) {
-      if (id===i.id) {
+      if (id === i.id) {
         i.quantity = quantityToCart
         setCart(prev => ([...prev, i]))
       }
     }
   }
-  
+
   useMemo(() => {
     const calc = cart.reduce((accumulator, item) => (
       accumulator + item.quantity
     ), 0)
     console.info(`calc: ${calc}`)
+    localStorage.setItem("calculation", Json.stringify(calculation))
     return setCalculation(calc)
   }, [cart])
 
   return (
     <>
-      <Image src={image} width={320} height={480} alt={`${title}`} />
+      <Image src={image} width={320} height={400} alt={`${title}`} />
       <div className='flex  flex-col gap-3 p-3 text-black'>
         <h3 className=' text-xl text-opacity-100'>
           {title}
