@@ -4,7 +4,7 @@ import productData from '@/dump/productData'
 
 const Cart = () => {
   let cart
-  const cartData = localStorage.getItem("data") || []
+  const cartData = JSON.parse(localStorage.getItem("data")) || []
   
   if (cartData.length !== 0) {
     for (i of cartData) {
