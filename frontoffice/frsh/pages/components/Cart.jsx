@@ -1,22 +1,37 @@
 import Link from "next/link";
 import CartCard from "./CartCard";
 import productData from '@/dump/productData'
+import { useEffect } from "react";
 
 const Cart = () => {
-  let cart
-  const cartData = JSON.parse(localStorage.getItem("data")) || []
+  // let cart
+  // const cartData = JSON.parse(localStorage.getItem("data")) || []
   
-  if (cartData.length !== 0) {
-    for (i of cartData) {
-      if (cartData.id === productData.id) {
-        cart = [...cart, productData.find((obj) => {obj.id===i.id})]
-      }
-    } I
-  }
+  // if (cartData.length !== 0) {
+  //   for (i of cartData) {
+  //     if (cartData.id === productData.id) {
+  //       cart = [...cart, productData.find((obj) => {obj.id===i.id})]
+  //     }
+  //   } I
+  // }
 
-  const calculation = cart.length > 0
-    ? cart.reduce((acc, obj) => (acc + obj.quantity), 0)
-    : 0
+  // const calculation = cart.length > 0
+  //   ? cart.reduce((acc, obj) => (acc + obj.quantity), 0)
+  //   : 0
+
+  const {
+    cart,
+    calc,
+    // increment,
+    // decrement,           
+    // update,
+    calculation,
+    // quantityToCart,
+} = useContext(CartContext)
+
+useEffect(() => {
+  calc()
+}, [])
 
   return (
     cart.length === 0 ? (
@@ -36,7 +51,7 @@ const Cart = () => {
             <button className="bg-red-200 cursor-pointer">Clear cart</button>
             <button className="bg-green-200 cursor-pointer">Check-out</button>
           </div>
-          <h1>Total: KES {calculation}</h1>
+          <h1>Total: KES {total}</h1>
         </div>
         <div className="">
           {cart.map(obj => (

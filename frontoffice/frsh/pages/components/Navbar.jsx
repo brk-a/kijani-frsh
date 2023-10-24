@@ -4,6 +4,8 @@ import Search from './Search'
 import { RxHamburgerMenu } from 'react-icons/rx'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { useContext } from 'react'
+import { CartContext } from '@/app/context/cart-context'
 
 const Navbar = () => {
   const router = useRouter()
@@ -12,6 +14,20 @@ const Navbar = () => {
   const openCart = () => {
     router.push("cart")
   }
+
+  const {
+    // cart,
+    calc,
+    // increment,
+    // decrement,           
+    // update,
+    calculation,
+    // quantityToCart,
+} = useContext(CartContext)
+
+useEffect(() => {
+  calc()
+}, [])
 
   return (
     <>
@@ -33,7 +49,7 @@ const Navbar = () => {
           className='text-[#21259] text-3xl p-1'
         />
         <div className='text-lg text-white bg-[#ff0000] absolute top-[5px] right-[33px] p-1 rounded-md'>
-          33
+          {calculation}
         </div>
       </div>
     </div>
