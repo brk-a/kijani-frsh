@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import productData from '@/dump/productData'
 
-export const CartContext = createContext(false)
+export const CartContext = createContext()
 
 export const CartContextProvider = ({ children }) => {
     const [cart, setCart] = useState(localStorage.getItem("data") || [])
