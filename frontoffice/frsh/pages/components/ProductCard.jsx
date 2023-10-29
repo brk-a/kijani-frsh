@@ -8,51 +8,51 @@ import { CartContext } from '@/app/context/cart-context'
 
 const ProductCard = ({ id, image, title, description, price }) => {
     // const [cart, setCart] = useState(localStorage.getItem("data") || [])
-    // const [quantityToCart, setQuantityToCart] = useState(0)
+    const [quantityToCart, setQuantityToCart] = useState(0)
     // const [calculation, setCalculation] = useState(0)
 
-    // const increment = (e) => {
-    //   // e.preventDefault()
-    //   setQuantityToCart(quantityToCart + 1)
-    //   const search = cart.find(obj => obj.id === e.target.id)
+    const increment = (e) => {
+        // e.preventDefault()
+        setQuantityToCart(quantityToCart + 1)
+        const search = cart.find(obj => obj.id === e.target.id)
 
-    //   if (search === undefined) return
+        if (search === undefined) return
 
-    //   if (search !== undefined) { //exists in cart
-    //     console.info(`search: ${search}`, search)
-    //     update(search.id)
-    //   } else {
-    //     setCart(prev => [...prev, { id: e.target.id, quantity: quantityToCart }])
-    //   }
+        if (search !== undefined) { //exists in cart
+            console.info(`search: ${search}`, search)
+            update(search.id)
+        } else {
+            setCart(prev => [...prev, { id: e.target.id, quantity: quantityToCart }])
+        }
 
-    //   localStorage.setItem("data", JSON.stringify(cart))
+        // localStorage.setItem("data", JSON.stringify(cart))
 
-    //   console.info(`cart, incr: ${cart}`, cart)
-    // }
-    // const decrement = (e) => {
-    //   // e.preventDefault()
-    //   quantityToCart < 0 ? 0 : setQuantityToCart(quantityToCart - 1)
-    //   const search = cart.find(obj => obj.id === e.target.id)
+        console.info(`cart, incr: ${cart}`, cart)
+    }
+    const decrement = (e) => {
+        // e.preventDefault()
+        quantityToCart < 0 ? 0 : setQuantityToCart(quantityToCart - 1)
+        const search = cart.find(obj => obj.id === e.target.id)
 
-    //   if (search === undefined) return
+        if (search === undefined) return
 
-    //   if (search !== undefined) { //exists in cart
-    //     console.info(`search: ${search}`, search)
-    //     update(search.id)
-    //     cart.filter(obj => obj.quantity !== 0)
-    //     localStorage.setItem("data", JSON.stringify(cart))
-    //   }
+        if (search !== undefined) { //exists in cart
+            console.info(`search: ${search}`, search)
+            update(search.id)
+            cart.filter(obj => obj.quantity !== 0)
+            // localStorage.setItem("data", JSON.stringify(cart))
+        }
 
-    //   console.info(`cart, decr: ${cart}`, cart)
-    // }
-    // const update = (id) => {
-    //   for (let i of cart) {
-    //     if (id === i.id) {
-    //       i.quantity = quantityToCart
-    //       setCart(prev => ([...prev, i]))
-    //     }
-    //   }
-    // }
+        console.info(`cart, decr: ${cart}`, cart)
+    }
+    const update = (id) => {
+        for (let i of cart) {
+            if (id === i.id) {
+                i.quantity = quantityToCart
+                setCart(prev => ([...prev, i]))
+            }
+        }
+    }
 
     // useMemo(() => {
     //   const calc = cart.reduce((accumulator, item) => (
@@ -65,11 +65,12 @@ const ProductCard = ({ id, image, title, description, price }) => {
 
     const {
         calc,
-        increment,
-        decrement,
+        cart,
         // update,
         // calculation,
-        quantityToCart,
+        // quantityToCart,
+        setCart,
+        // setQuantityToCart,
     } = useContext(CartContext)
 
     useEffect(() => {

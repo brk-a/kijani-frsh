@@ -4,7 +4,7 @@ import Search from './Search'
 import { RxHamburgerMenu } from 'react-icons/rx'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { CartContext } from '@/app/context/cart-context'
 
 const Navbar = () => {
