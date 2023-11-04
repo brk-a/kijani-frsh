@@ -7,9 +7,16 @@ import productData from '@/dump/productData'
 import { CartContext } from '@/app/context/cart-context'
 
 const ProductCard = ({ id, image, title, description, price }) => {
-    // const [cart, setCart] = useState(localStorage.getItem("data") || [])
+
     const [quantityToCart, setQuantityToCart] = useState(0)
-    // const [calculation, setCalculation] = useState(0)
+    const {
+        calc,
+        cart,
+        setCart,
+    } = useContext(CartContext)
+
+    console.log(cart);
+
 
     const increment = (e) => {
         // e.preventDefault()
@@ -20,13 +27,9 @@ const ProductCard = ({ id, image, title, description, price }) => {
 
         if (search !== undefined) { //exists in cart
             console.info(`search: ${search}`, search)
-            update(search.id)
-        } else {
-            setCart(prev => [...prev, { id: e.target.id, quantity: quantityToCart }])
+            search.quantity += 1
+            // setCart(prev => [...prev, search])
         }
-
-        // localStorage.setItem("data", JSON.stringify(cart))
-
         console.info(`cart, incr: ${cart}`, cart)
     }
     const decrement = (e) => {
@@ -38,40 +41,22 @@ const ProductCard = ({ id, image, title, description, price }) => {
 
         if (search !== undefined) { //exists in cart
             console.info(`search: ${search}`, search)
-            update(search.id)
-            cart.filter(obj => obj.quantity !== 0)
-            // localStorage.setItem("data", JSON.stringify(cart))
+            search.quantity = 0 ? 0 : search.quantity -= 1
+            // setCart(prev => [...prev, search])
+
         }
 
         console.info(`cart, decr: ${cart}`, cart)
     }
-    const update = (id) => {
-        for (let i of cart) {
-            if (id === i.id) {
-                i.quantity = quantityToCart
-                setCart(prev => ([...prev, i]))
-            }
-        }
-    }
+    // const update = (id) => {
+    //     for (let i of cart) {
+    //         if (id === i.id) {
+    //             i.quantity = quantityToCart
+    //             setCart(prev => ([...prev, i]))
+    //         }
+    //     }
+    // }
 
-    // useMemo(() => {
-    //   const calc = cart.reduce((accumulator, item) => (
-    //     accumulator + item.quantity
-    //   ), 0)
-    //   console.info(`calc: ${calc}`)
-    //   localStorage.setItem("calculation", JSON.stringify(calculation))
-    //   return setCalculation(calc)
-    // }, [cart])
-
-    const {
-        calc,
-        cart,
-        // update,
-        // calculation,
-        // quantityToCart,
-        setCart,
-        // setQuantityToCart,
-    } = useContext(CartContext)
 
     useEffect(() => {
         calc()
