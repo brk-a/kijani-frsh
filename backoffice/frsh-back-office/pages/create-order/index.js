@@ -26,7 +26,7 @@ const NewItem = () => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ orderDate, deliveryDate, supplierName, shippingAddress, terms }),
+                body: JSON.stringify({ orderDate, deliveryDate, supplierName, shippingAddress, terms, csv, csvName }),
             })
 
             const data = await response.json()

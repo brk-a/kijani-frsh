@@ -3,12 +3,12 @@ import axios from "axios"
 const downloadPurchaseOrder = async (req, res) => {
     if (req.method === "GET") {
         try {
-            const { filename } = req.query
-            const DUMMY_URL = ""
-            const { data } = await axios.get(DUMMY_URL, {
+            const { orderDate, deliveryDate, supplierName, shippingAddress, terms, csv, csvName  } = req.query
+            const FILE_URL = req.body.fuleUrl
+            const { data } = await axios.get(FILE_URL, {
                 responseType: "stream",
             })
-            res.setHeader("content-disposition", `attachment; filename=${filename}`)
+            res.setHeader("content-disposition", `attachment; filename=${csv}`)
             data.pipe(res)
             res.send()
         } catch (error) {
@@ -19,3 +19,4 @@ const downloadPurchaseOrder = async (req, res) => {
         res.status(405).json({ message: "downloadPurchaseOrder: Not allowed" })
     }
 }
+downloadPurchaseOrder()
