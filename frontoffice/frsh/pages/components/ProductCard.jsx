@@ -33,7 +33,7 @@ const ProductCard = ({ id, image, title, description, price }) => {
     }
     const decrement = (e) => {
         // e.preventDefault()
-        quantityToCart < 0 ? 0 : setQuantityToCart(quantityToCart - 1)
+        quantityToCart <= 0 ? 0 : setQuantityToCart(quantityToCart - 1)
         quantityToCart <= 0 ? 0 : calculation <= 0 ? 0 : setCalculation(calculation - 1)
         const search = cart.find(obj => obj.id === e.target.id)
 
