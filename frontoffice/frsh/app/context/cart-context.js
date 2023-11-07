@@ -8,23 +8,15 @@ export const CartContextProvider = ({ children }) => {
     const [cart, setCart] = useState([])
     const [calculation, setCalculation] = useState(0)
 
-    const initCart = productData.map(prod => ({id: prod.id, quantity: 0}))
-    setCart(initCart)
-
-    const calc = () => {
-        const tot = cart.reduce((acc, obj) => (acc + obj.quantity), 0)
-        setCalculation(tot)
-    }
-
-
-    useEffect(() => {
-        calc()
-    }, [])
+    // const calc = () => {
+    //     const tot = cart.reduce((acc, obj) => (acc + obj.quantity), 0)
+    //     setCalculation(tot)
+    // }
 
     return (
         <CartContext.Provider value={{
             cart,
-            calc,
+            // calc,
             calculation,
             setCart,
             setCalculation

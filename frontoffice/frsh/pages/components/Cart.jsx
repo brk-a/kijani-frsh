@@ -29,9 +29,9 @@ const Cart = () => {
     // quantityToCart,
 } = useContext(CartContext)
 
-useEffect(() => {
-  calc()
-}, [])
+// useEffect(() => {
+//   calc()
+// }, [])
 
   return (
     cart.length === 0 ? (

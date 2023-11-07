@@ -2,17 +2,16 @@
 
 import { NumberFormat } from 'jsx-number-format'
 import Image from 'next/image'
-import { useState, useMemo, useContext, useEffect } from 'react'
-import productData from '@/dump/productData'
+import { useState, useContext } from 'react'
 import { CartContext } from '@/app/context/cart-context'
 
 const ProductCard = ({ id, image, title, description, price }) => {
 
     const [quantityToCart, setQuantityToCart] = useState(0)
     const {
-        calc,
+        calculation,
         cart,
-        setCart,
+        setCalculation
     } = useContext(CartContext)
 
     console.log(cart);
@@ -21,6 +20,7 @@ const ProductCard = ({ id, image, title, description, price }) => {
     const increment = (e) => {
         // e.preventDefault()
         setQuantityToCart(quantityToCart + 1)
+        setCalculation(calculation + 1)
         const search = cart.find(obj => obj.id === e.target.id)
 
         if (search === undefined) return
@@ -28,13 +28,13 @@ const ProductCard = ({ id, image, title, description, price }) => {
         if (search !== undefined) { //exists in cart
             console.info(`search: ${search}`, search)
             search.quantity += 1
-            // setCart(prev => [...prev, search])
         }
         console.info(`cart, incr: ${cart}`, cart)
     }
     const decrement = (e) => {
         // e.preventDefault()
         quantityToCart < 0 ? 0 : setQuantityToCart(quantityToCart - 1)
+        quantityToCart <= 0 ? 0 : calculation <= 0 ? 0 : setCalculation(calculation - 1)
         const search = cart.find(obj => obj.id === e.target.id)
 
         if (search === undefined) return
@@ -42,25 +42,10 @@ const ProductCard = ({ id, image, title, description, price }) => {
         if (search !== undefined) { //exists in cart
             console.info(`search: ${search}`, search)
             search.quantity = 0 ? 0 : search.quantity -= 1
-            // setCart(prev => [...prev, search])
-
         }
 
         console.info(`cart, decr: ${cart}`, cart)
     }
-    // const update = (id) => {
-    //     for (let i of cart) {
-    //         if (id === i.id) {
-    //             i.quantity = quantityToCart
-    //             setCart(prev => ([...prev, i]))
-    //         }
-    //     }
-    // }
-
-
-    useEffect(() => {
-        calc()
-    }, [])
 
     return (
         <>
