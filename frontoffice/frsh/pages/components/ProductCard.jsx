@@ -14,19 +14,19 @@ const ProductCard = ({ id, image, title, description, price }) => {
         setCalculation
     } = useContext(CartContext)
 
-    console.log(cart);
-
 
     const increment = (e) => {
         // e.preventDefault()
         setQuantityToCart(quantityToCart + 1)
         setCalculation(calculation + 1)
-        const search = cart.find(obj => obj.id === e.target.id)
+        const search = cart.find(obj => obj.id == e.target.id)
 
-        if (search === undefined) return
+        if (search === undefined){
+            console.info("not found")
+            return
+        }
 
         if (search !== undefined) { //exists in cart
-            console.info(`search: ${search}`, search)
             search.quantity += 1
         }
         console.info(`cart, incr: ${cart}`, cart)
@@ -35,17 +35,18 @@ const ProductCard = ({ id, image, title, description, price }) => {
         // e.preventDefault()
         quantityToCart <= 0 ? 0 : setQuantityToCart(quantityToCart - 1)
         quantityToCart <= 0 ? 0 : calculation <= 0 ? 0 : setCalculation(calculation - 1)
-        const search = cart.find(obj => obj.id === e.target.id)
+        const search = cart.find(obj => obj.id == e.target.id)
 
         if (search === undefined) return
 
         if (search !== undefined) { //exists in cart
-            console.info(`search: ${search}`, search)
             search.quantity = 0 ? 0 : search.quantity -= 1
         }
 
         console.info(`cart, decr: ${cart}`, cart)
     }
+
+    
 
     return (
         <>
