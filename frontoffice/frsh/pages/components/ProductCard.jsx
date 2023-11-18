@@ -29,7 +29,7 @@ const ProductCard = ({ id, image, title, description, price }) => {
         if (search !== undefined) { //exists in cart
             search.quantity += 1
         }
-        console.info(`cart, incr: ${cart}`, cart)
+        // console.info(`cart, incr: ${cart}`, cart)
     }
     const decrement = (e) => {
         // e.preventDefault()
@@ -43,7 +43,7 @@ const ProductCard = ({ id, image, title, description, price }) => {
             search.quantity = 0 ? 0 : search.quantity -= 1
         }
 
-        console.info(`cart, decr: ${cart}`, cart)
+        // console.info(`cart, decr: ${cart}`, cart)
     }
 
     

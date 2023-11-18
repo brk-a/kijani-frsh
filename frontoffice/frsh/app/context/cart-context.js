@@ -1,5 +1,5 @@
 "use client"
-import { createContext, useState, useContext, useEffect } from "react";
+import { createContext, useState, useEffect } from "react";
 import productData from '@/dump/productData'
 
 
@@ -18,7 +18,10 @@ export const CartContextProvider = ({ children }) => {
         const initCart = productData.map(product => (
             {
                 id: product.id,
+                image: product.image,
+                title: product.title,
                 quantity: 0,
+                unitPrice: product.price,
             }
         ))
         setCart(initCart)
@@ -35,10 +38,4 @@ export const CartContextProvider = ({ children }) => {
             {children}
         </CartContext.Provider>
     )
-}
-
-export const useCart = () => {
-    return useContext({
-        CartContext,
-    })
 }

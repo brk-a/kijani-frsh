@@ -1,11 +1,10 @@
+import { useContext } from "react";
 import Link from "next/link";
 import CartCard from "./CartCard";
-import productData from '@/dump/productData'
-import { useContext } from "react";
 import { CartContext } from "@/app/context/cart-context";
 
 const Cart = () => {
-	const {cart, setCart} = useContext(CartContext)
+	const {cart} = useContext(CartContext)
 
 	return (
 		cart.length === 0 ? (
@@ -33,9 +32,9 @@ const Cart = () => {
 							<CartCard
 								image={obj.image}
 								title={obj.title}
-								unitPrice={obj.price}
+								unitPrice={obj.unitPrice}
 								quantity={obj.quantity}
-								totalPrice={() => { obj.price * obj.quantity }}
+								totalPrice={obj.unitPrice * obj.quantity }
 							/>
 						</div>
 					))}
