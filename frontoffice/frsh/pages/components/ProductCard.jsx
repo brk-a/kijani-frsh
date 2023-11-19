@@ -21,7 +21,7 @@ const ProductCard = ({ id, image, title, description, price }) => {
         setCalculation(calculation + 1)
         const search = cart.find(obj => obj.id == e.target.id)
 
-        if (search === undefined){
+        if (search === undefined) {
             console.info("not found")
             return
         }
@@ -46,7 +46,7 @@ const ProductCard = ({ id, image, title, description, price }) => {
         // console.info(`cart, decr: ${cart}`, cart)
     }
 
-    
+
 
     return (
         <>

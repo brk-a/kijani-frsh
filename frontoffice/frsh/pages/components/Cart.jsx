@@ -4,7 +4,7 @@ import CartCard from "./CartCard";
 import { CartContext } from "@/app/context/cart-context";
 
 const Cart = () => {
-	const {cart} = useContext(CartContext)
+	const { cart } = useContext(CartContext)
 
 	return (
 		cart.length === 0 ? (
@@ -28,16 +28,19 @@ const Cart = () => {
 				</div>
 				<div className="">
 					{cart.map(obj => (
-						<div key={obj.id}>
-							<CartCard
-								image={obj.image}
-								title={obj.title}
-								unitPrice={obj.unitPrice}
-								quantity={obj.quantity}
-								totalPrice={obj.unitPrice * obj.quantity }
-							/>
-						</div>
-					))}
+						obj.quantity == 0 ? (
+							<div key={obj.id}>
+								<CartCard
+									image={obj.image}
+									title={obj.title}
+									unitPrice={obj.unitPrice}
+									quantity={obj.quantity}
+									totalPrice={obj.unitPrice * obj.quantity}
+								/>
+							</div>
+						) : (<></>))
+
+					)}
 				</div>
 			</div>
 		)
