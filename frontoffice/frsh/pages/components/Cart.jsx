@@ -4,7 +4,7 @@ import CartCard from "./CartCard";
 import { CartContext } from "@/app/context/cart-context";
 
 const Cart = () => {
-	const { cart } = useContext(CartContext)
+	const { calculation, cart } = useContext(CartContext)
 
 	return (
 		cart.length === 0 ? (
