@@ -28,7 +28,7 @@ const Cart = () => {
 				</div>
 				<div className="">
 					{cart.map(obj => (
-						obj.quantity == 0 ? (
+						obj.quantity > 0 ? (
 							<div key={obj.id}>
 								<CartCard
 									image={obj.image}

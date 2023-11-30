@@ -2,7 +2,7 @@
 
 import { NumberFormat } from 'jsx-number-format'
 import Image from 'next/image'
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { CartContext } from '@/app/context/cart-context'
 
 const ProductCard = ({ id, image, title, description, price }) => {
@@ -46,7 +46,16 @@ const ProductCard = ({ id, image, title, description, price }) => {
         // console.info(`cart, decr: ${cart}`, cart)
     }
 
+    useEffect(() => {
+        let items = []
+        for (let item of cart) {
+            if (item.quantity > 0) {
+                items.push(item)
+            }
+        }
+        localStorage.setItem("items", JSON.stringify(items))
 
+    }, [calculation])
 
     return (
         <>
