@@ -46,7 +46,11 @@ const ProductCard = ({ id, image, title, description, price }) => {
         // console.info(`cart, decr: ${cart}`, cart)
     }
 
+    // const items = []
     useEffect(() => {
+        // const storedItems = JSON.parse(localStorage.getItem("items"))
+        // let items
+        // storedItems ? items = storedItems: items = []
         let items = []
         for (let item of cart) {
             if (item.quantity > 0) {
